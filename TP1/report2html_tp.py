@@ -1,60 +1,45 @@
 from re import *
 import os
 import jinja2 as j2
-from bs4 import BeautifulSoup as bs
 
 
-
-def readfile(filename):
-# para ler um ficheiro (devolve texto)
+def read_file(filename):
+# para ler um ficheiro.
     with open(filename) as f:
         report=f.read()
     return report
 
 
-def extractDtd(filename):
-# recebe o DTD do nosso XML e retorna uma lista com as tags todas
-    content=readfile(filename)
+def extract_Dtd(filename):
+# recebe o DTD do nosso XML e retorna uma lista com as tags todas.
+    content=read_file(filename)
     tags=[]
     for tag in findall(r'<!ELEMENT (.*?) ',content): 
         tags.append(tag)
     return(tags)
 
 
-def extractDict(L,report):
-# recebe uma lista com tags e devolve um dicionário com o que está dentro dessas tags para o report
+def extract_Dict(L,report):
+# recebe uma lista com tags e devolve um dicionário com o que está dentro dessas tags para o report.
     infoDict={}
     for el in L:
         v=search(rf'<{el}(.*?)>((?:.|\n)*?)</{el}>',report)
-        # |\n é para incluir o newline na procura e ?: é para dizer que os parenteses no (?:.|\n) não são para
-        #  atribuir a um grupo, são apenas para indicar prioridade.
+        # |\n é para incluir o newline na procura e ?: é para dizer que os parênteses no (?:.|\n) não são para
+        # atribuir a um grupo, são apenas para indicar prioridade.
         if v:
             infoDict[el]=v[2]
     return infoDict
 
 
-def extrai_listaH(xml,tag):
-# recebe uma string xml e uma tag e extrai uma lista homogenea com o miolo das tags
+def extract_ListaH(xml,tag):
+# recebe uma string xml e uma tag e extrai uma lista homogénea com o miolo da tag.
     infoH=[]
     for miolo in findall(rf'<{tag}(.*?)>((?:.|\n)*?)</{tag}>',xml): 
         infoH.append(miolo[1])
     return infoH
 
 
-def extractIndice(report):
-	a = bs(report,"lxml")
-	for el in a.find_all("title"):
-		return el.text
-
-def extractHashtags(report):
-    a = bs(report,"lxml")
-    l = []
-    for el in a.find_all("hashtag"):
-        l.append(el.text)
-    return l
-
-
-def preenche(info):
+def preenche_Report(info):
     t=j2.Template("""
     <!DOCTYPE html>
     <html>
@@ -63,16 +48,8 @@ def preenche(info):
         <meta charset="UTF-8"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 		<style>
-	  	body {
-  		background-color: Snow;
-		margin: 0 auto;
-		padding: 0 20px 20px 20px;
-		}
-		h1 {  
-  		color: Navy;
-  		padding: 20px 0;
-  		text-shadow: 3px 3px 1px skyblue;
-		}
+	  	body {background-color: Snow; margin: 0 auto; padding: 0 20px 20px 20px;}
+		h1 {color: Navy; padding: 20px 0; text-shadow: 3px 3px 1px lightblue;}
 		</style>
     </head>
     <body>
@@ -104,7 +81,7 @@ def preenche(info):
         <br>
         <h2 id="section3"> Conteúdo </h2>
         <br>
-            {% for text in description['texts'] %}
+            {% for text in texts %}
             <p align="justify">{{text}}</p>
             <br>
             {% endfor %}
@@ -112,8 +89,8 @@ def preenche(info):
         <br>
         <h2 id="section5"> Hashtags </h2>
         <p align="justify">    
-            {% for hashtag in description['hashtags'] %}
-                {{hashtag}}
+            {% for hashtag in hashtags %}
+            {{hashtag}}
             {% endfor %}
         </p>
         <br>
@@ -129,43 +106,34 @@ def preenche(info):
         <a href="#section2">Link |</a>
         <a href="#section3">Conteúdo</a>
     </body>
-    </html>
-    """
-    )
+    </html> """)
+
     return(t.render(info))
 
 
-
-def preenche2(titles):
+def preenche_Indice(info):
 	t=j2.Template("""
 		<!DOCTYPE html>
 		<html>
 		<head>
-            <left><img align="left" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/logoEEUM.png" width=130 height=90></left>
-            <p align="right">Publicação Eletrónica 2020/2021</title>
-            <br><br><br>
+            <left><img align="left" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/logoEEUM.png" width=150 height=100></left>
+            <right><img align="right" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/imagem.png?fbclid=IwAR1AAickXiDy-hHg7eHiY0fxvNQTUcqKCqJ6Y5fP2Kf8_Pija0Pmt3BUEOM" width=150 height=100></right>
+            <br>
+            <p align="center">Publicação Eletrónica 2020/2021</p>
+            <br>
 			<title align="center">Índice</title>
 			<meta charset="utf-8"/>
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
             <style>
-            body {
-            background-color: Snow;
-            }
-            h1 {  
-            color: Navy;
-            text-shadow: 3px 3px 1px skyblue;
-            }
-            p{
-            color: Black;
-            }
+            h1 {color: Navy; text-shadow: 4px 4px 2px lightblue;}
+            p {color: Black; margin: 0 auto; padding: 0 10px 10px 10px;}
 		    </style>
         </head>
-
 		<body>
-			<br>
-			<h1 align="center"> Índice</h1>
+		    <br><br>
+			<h1 align="center">Índice</h1>
 			<hr>
-			<br><br>
+			<br>
 			{% for t in title %}
 			<p align="center"> <a href= "report{{title.index(t)+1}}.html" title="Ir para Report{{title.index(t)+1}}" target="_blank"> {{t}}</a></p>
 			<br>
@@ -174,54 +142,57 @@ def preenche2(titles):
             <p align="center"> 
             {% for lista in hashtags %}
             {% for elemento in lista %}
-                <a href="report{{hashtags.index(lista)+1}}.html" target="_blank">{{elemento}} |</a>
+            <a href="report{{hashtags.index(lista)+1}}.html" target="_blank">{{elemento}} |</a>
             {% endfor %}
             {% endfor %}
-            </p>
-        
-        
-        </body>
-		</html>""")
+            <hr>
+            <br>
+            <p align="center">Mestrado Integrado em Engenharia Biomédica</p>
+		</html> """)
 
-	return(t.render(titles))
-
-
+	return(t.render(info))
 
 
 def main():
-
-    f = readfile("portefolio.xml")
-    lista_tags = extractDtd("portefolio.dtd")
+    f = read_file("portefolio.xml")
+    lista_tags = extract_Dtd("portefolio.dtd")
 
     if os.path.exists("./FilesHTML" ) == False:
 	    dir = "./FilesHTML"      
-	    os.mkdir(dir) # cria uma pasta onde vão ser guardados os Reports em HTML, SE ela ainda não existir
+	    os.mkdir(dir) # cria uma pasta onde vão ser guardados os Reports em HTML e o Índice, SE ela ainda não existir.
 
     i = 1
-    t = {"title":[],'hashtags':[]}
-    for report in f.split("</report>"): # faz o split para obter e guardar todos os reports numa lista como strings
-        if "<report>" in report: # para ter a certeza que é um report válido, tem de ter a tag <report>
-            d = extractDict(lista_tags,report)
-            aux = extrai_listaH(d['authors'],'element')
-
-            # para cada elemento de authors vai buscar o name, number e email
-            d['authors'] = [extractDict(['name','number','email'],el) for el in aux]
+    info_indice = {"title":[],'hashtags':[]} # aqui estará a informação que vai povoar o template do Índice.
+    for report in f.split("</report>"): 
+    # faz o split para obter e guardar todos os reports numa lista, como strings.
+        if "<report>" in report: 
+        # para ter a certeza que é um report válido, tem de ter a tag <report>.
+            info_report = extract_Dict(lista_tags,report) 
+            # dicionário que tem as tags como chave e o miolo como valor.
             
-            # vai buscar o conteúdo de cada ref
-            d['references'] = extrai_listaH(d['references'],'ref')
-            
-            # vai buscar o conteúdo de cada text
-            d['description'] = {'texts':extrai_listaH(d['description'],'text'),'hashtags':extrai_listaH(d['description'],'hashtag')}
+            aux = extract_ListaH(info_report['authors'],'element')
+            # para cada element de authors vai buscar o name, number e email.
+            info_report['authors'] = [extract_Dict(['name','number','email'], el) for el in aux]
+            # vai buscar o conteúdo de cada text na description e guarda.
+            info_report['texts'] = extract_ListaH(info_report['description'],'text')
+            # vai buscar o conteúdo de cada hashtag na description e guarda.						
+            info_report['hashtags'] = extract_ListaH(info_report['description'],'hashtag')
+            # vai buscar o conteúdo de cada ref em references e guarda.
+            info_report['references'] = extract_ListaH(info_report['references'],'ref')
 
             with open(rf"FilesHTML/report{i}.html",'w') as file: 
-                file.write(preenche(d)) # guarda os ficheiros HTML na pasta criada acima
+                file.write(preenche_Report(info_report)) # preenche o template e guarda os reports HTML na pasta criada acima.
 
-            t["title"].append(extractIndice(report))
-            t["hashtags"].append(extractHashtags(report))
-            with open(rf"FilesHTML/index.html",'w') as f: 
-                f.write(preenche2(t)) # guarda os ficheiros HTML na pasta criada acima'''
-        i += 1
+            # guarda a informação que estará no Índice.
+            info_indice['title'].append(info_report['title'])
+            info_indice['hashtags'].append(info_report['hashtags'])
+            
+            i += 1
 
+    # finalmente cria o Índice com os títulos dos reports e as hashtags e guarda na mesma pasta.
+    with open(rf"FilesHTML/index.html",'w') as f: 
+                f.write(preenche_Indice(info_indice))
+    
     print("Ficheiros HTML gerados e guardados com sucesso! :)")
 
 main()
