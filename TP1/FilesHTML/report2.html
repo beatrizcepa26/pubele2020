@@ -1,0 +1,97 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>INTERNET PATHS AND DELAYS</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		<style>
+	  	body {background-color: Snow; margin: 0 auto; padding: 0 20px 20px 20px;}
+		h1 {color: Navy; padding: 20px 0; text-shadow: 3px 3px 1px lightblue;}
+		</style>
+    </head>
+    <body>
+        <h1 align="center">INTERNET PATHS AND DELAYS</h1>
+        <h2 align="center">Comunicações e Redes</h2>
+        <p>03 de novembro de 2020</p>
+        <hr/>
+        <a href="#section3">Conteúdo |</a>
+        <a href="#section4">Referências |</a>
+        <a href="#section5">Hashtags</a>
+        <hr/>
+        <h2 id="section1">Autores</h2>
+        <hr/>
+        <ul>
+            
+            <li> Beatriz Cepa
+                <ul>
+                    <li> <u>Número</u>: 83813</li>
+                    <li> <u>Email</u>: <a href= "mailto:a83813@alunos.uminho.pt">a83813@alunos.uminho.pt</a></li> 
+                    <br>
+                </ul>
+            
+            <li> Beatriz Soares
+                <ul>
+                    <li> <u>Número</u>: 85815</li>
+                    <li> <u>Email</u>: <a href= "mailto:a85815@alunos.uminho.pt">a85815@alunos.uminho.pt</a></li> 
+                    <br>
+                </ul>
+            
+        </ul>
+        <hr/>
+        <h2 id="section2"><i>Link</i></h2>
+        <ul>
+            <li><a href= https://github.com/beatrizcepa26/pubele2020/blob/main/TP1/report2.pdf target="_blank">Report em PDF</a></li>
+        </ul>
+        <br>
+        <h2 id="section3"> Conteúdo </h2>
+        <br>
+            
+            <p align="justify">O Traceroute é um comando de monotorização comumente utilizado por administradores de rede e de sistemas 
+    nas suas operações diárias. Esta ferramenta básica de diagnóstico de rede tem três objetivos principais, que 
+    fornecem uma compreensão precisa e completa de um problema de rede. O Traceroute envia vários pacotes de dados 
+    para um endereço de destino especificado e regista cada router (ou ponto intermediário) pelo qual os dados passam. 
+    Cada router encontrado representa um salto (hop). É comum que os dados tenham vários saltos antes de chegarem ao 
+    seu destino. Por exemplo, se a origem do path for em Braga, Portugal e o destino em Miami, na Califórnia, o Traceroute 
+    identificará o caminho completo, cada salto no caminho e o tempo que demora a ir e voltar.</p>
+            <br>
+            
+            <p align="justify">É também importante referir que cada pacote IP enviado pela Internet possui um campo conhecido como Time-To-Live (TTL). 
+    Este corresponde ao número máximo de saltos que um pacote pode dar pela Internet antes de ser descartado. O campo TTL num 
+    pacote IP é essencial, porque, se não houvesse um, o pacote continuaria a fluir de um router para outro para sempre à procura 
+    do seu destino, naquilo que seria designado por um loop infinito. Assim, o Traceroute depende do TTL para medir a distância 
+    entre a origem e o destino e encontrar os saltos entre eles.</p>
+            <br>
+            
+            <p align="justify">Ora, como foi dito no início, o Traceroute é ferramenta de diagnóstico que fornece uma compreensão precisa 
+    e completa de um problema de rede. Assim, os tempos rtt são os parâmetros mais importantes ao avaliar um Traceroute. 
+    Tempos consistentes são o que se deve procurar. Pode haver saltos abruptos com tempos de latência maiores, mas isso pode 
+    não indicar um problema; o importante é observar um padrão. Por exemplo, se ocorrer um aumento repentino de rtt num salto e 
+    este continuar a aumentar até ao destino (se chegar lá), isso pode indicar um problema que começa no salto onde se verificou 
+    esse aumento. Consequentemente, pode verificar-se a perda de pacotes (*) no relatório. Outro exemplo é a alta latência nos saltos 
+    iniciais, o que pode indicar um possível problema ao nível da rede local [1]. É na avaliação de situações como as destes exemplos 
+    que o Traceroute é extremamente útil.</p>
+            <br>
+            
+        <center><img src= "https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/imagem_report2.JPG" ></center>
+        <br>
+        <h2 id="section5"> Hashtags </h2>
+        <p align="justify">    
+            
+            #traceroute
+            
+        </p>
+        <br>
+        <h2 id="section4"> Referências </h2>
+        <ol>
+            
+            <li><a href =  https://www.inmotionhosting.com/support/website/ssh/read-traceroute/ target="_blank">  https://www.inmotionhosting.com/support/website/ssh/read-traceroute/ </a></li>
+            <br>
+                    
+        </ol>
+        <hr/>
+        <a href="#section1">Autores |</a>
+        <a href="#section2">Link |</a>
+        <a href="#section3">Conteúdo</a>
+    </body>
+    </html> 

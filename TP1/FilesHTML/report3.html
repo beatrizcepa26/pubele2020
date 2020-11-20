@@ -1,0 +1,101 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>DATA TRANSMISSION AND DELAYS</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		<style>
+	  	body {background-color: Snow; margin: 0 auto; padding: 0 20px 20px 20px;}
+		h1 {color: Navy; padding: 20px 0; text-shadow: 3px 3px 1px lightblue;}
+		</style>
+    </head>
+    <body>
+        <h1 align="center">DATA TRANSMISSION AND DELAYS</h1>
+        <h2 align="center">Comunicações e Redes</h2>
+        <p>10 de novembro de 2020</p>
+        <hr/>
+        <a href="#section3">Conteúdo |</a>
+        <a href="#section4">Referências |</a>
+        <a href="#section5">Hashtags</a>
+        <hr/>
+        <h2 id="section1">Autores</h2>
+        <hr/>
+        <ul>
+            
+            <li> Beatriz Cepa
+                <ul>
+                    <li> <u>Número</u>: 83813</li>
+                    <li> <u>Email</u>: <a href= "mailto:a83813@alunos.uminho.pt">a83813@alunos.uminho.pt</a></li> 
+                    <br>
+                </ul>
+            
+            <li> Beatriz Soares
+                <ul>
+                    <li> <u>Número</u>: 85815</li>
+                    <li> <u>Email</u>: <a href= "mailto:a85815@alunos.uminho.pt">a85815@alunos.uminho.pt</a></li> 
+                    <br>
+                </ul>
+            
+        </ul>
+        <hr/>
+        <h2 id="section2"><i>Link</i></h2>
+        <ul>
+            <li><a href= https://github.com/beatrizcepa26/pubele2020/blob/main/TP1/report3.pdf target="_blank">Report em PDF</a></li>
+        </ul>
+        <br>
+        <h2 id="section3"> Conteúdo </h2>
+        <br>
+            
+            <p align="justify">Neste trabalho prático, lidamos com dois tipos de atrasos: o atraso de transmissão, que corresponde ao tempo necessário 
+    para transmitir todos os bits do pacote, ou seja, é dado pelo quociente entre o tamanho do pacote, em bits, e a taxa de 
+    transmissão em bits por segundo; e o atraso de propagação, que é o tempo necessário para que cada bit se propague até ao 
+    destino. Desta forma, este é obtido pelo quociente da distância entre a fonte e o destino e a velocidade de propagação. Da soma 
+    destes dois atrasos resulta o atraso total ou também chamado end-to-end delay.</p>
+            <br>
+            
+            <p align="justify">Tendo em conta o que acabamos de definir, é bastante intuitivo perceber que, quanto maior for o tamanho do pacote a enviar, 
+    para uma velocidade de transmissão constante, maior será o atraso de transmissão. Porém, o tamanho do pacote não tem influência 
+    sobre o atraso de propagação, uma vez que esse, para uma dada velocidade de propagação, apenas depende da distância entre fonte e 
+    destino. Ou seja, para 1 bit na fonte o atraso de propagação é exatamente o mesmo que ter 100 bits na fonte.</p>
+            <br>
+            
+            <p align="justify">Também importante comparar a situação em que temos apenas uma ligação entre fonte e destino e é enviado um só 
+    pacote, com a situação em que existem duas ligações entre fonte e destino com um router a conectá-las, mais uma vez, 
+    sendo enviado um só pacote. Ora, na primeira situação, o pacote “viaja” diretamente da fonte para o destino, sendo que o delay de 
+    transmissão é proporcional ao tamanho do pacote enviado, e igual a 3s. Porém, na segunda situação, o pacote 
+    primeiro “viaja” desde fonte até ao router e, só depois de toda a informação ter chegado a este, é que o pacote é transmitido para 
+    o destino. Logo, o delay de transmissão duplica: são precisos 3s para o pacote ser transmitido até ao router, e mais 3s para a 
+    informação ser transmitida do router até ao destino, perfazendo um total de 6s de delay de transmissão. No entanto, no que toca ao 
+    delay de propagação, este é igual nas duas situações (0,05s), pois este, para a mesma velocidade de propagação, só depende da 
+    distância entre a fonte e o destino, que, em ambas as situações, é de 10 000 km.</p>
+            <br>
+            
+            <p align="justify">Na transmissão store and forward, os pacotes são recebidos e armazenados na memória de um router e, depois de 
+    inspecionados em busca de erros, sãoencaminhados para o destino seguinte. O envio de informação por pacotes, também designado por 
+    packet switching tem vantagens como: ser ideal para dados, eventuais erros poderem ser recuperados no enlace onde ocorreram e o 
+    facto de dividir uma mensagem em pacotes e transmiti-los simultaneamente reduzir o atraso de transmissão total da mensagem [1].</p>
+            <br>
+            
+        <center><img src= "" ></center>
+        <br>
+        <h2 id="section5"> Hashtags </h2>
+        <p align="justify">    
+            
+            #transmissãodedados
+            
+        </p>
+        <br>
+        <h2 id="section4"> Referências </h2>
+        <ol>
+            
+            <li><a href = https://www.uniaogeek.com.br/redes-de-comunicacao-de-dados-comutacao/ target="_blank"> https://www.uniaogeek.com.br/redes-de-comunicacao-de-dados-comutacao/ </a></li>
+            <br>
+                    
+        </ol>
+        <hr/>
+        <a href="#section1">Autores |</a>
+        <a href="#section2">Link |</a>
+        <a href="#section3">Conteúdo</a>
+    </body>
+    </html> 

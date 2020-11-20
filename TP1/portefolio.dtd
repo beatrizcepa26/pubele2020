@@ -1,0 +1,22 @@
+<!-- DTD portefolio ... -->
+<!ELEMENT portefolio (report)* >
+<!ELEMENT report (title|date|uc|authors|resource|format|otherformat|description|references)* >
+<!ELEMENT title (#PCDATA) >
+<!ELEMENT date (#PCDATA) >
+<!ELEMENT uc (#PCDATA) >
+<!ELEMENT authors (element)* >
+<!ELEMENT element (name|number|email)* >
+<!ELEMENT name (#PCDATA) >
+<!ELEMENT number (#PCDATA) >
+<!ELEMENT email (#PCDATA) >
+<!ELEMENT format (otherformat)* >
+<!ELEMENT otherformat (#PCDATA) >
+	<!-- fmt : ... -->
+	<!ATTLIST otherformat fmt CDATA #IMPLIED >
+<!ELEMENT description (image|text|hashtag)* >
+<!ELEMENT image (#PCDATA) >
+<!ELEMENT text (#PCDATA) >
+<!ELEMENT hashtag (#PCDATA) >
+<!ELEMENT references (ref)* >
+<!ELEMENT ref (#PCDATA) >
+
