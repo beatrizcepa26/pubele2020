@@ -41,6 +41,19 @@ def extrai_listaH(xml,tag):
     return infoH
 
 
+def extractIndice(report):
+	a = bs(report,"lxml")
+	for el in a.find_all("title"):
+		return el.text
+
+def extractHashtags(report):
+    a = bs(report,"lxml")
+    l = []
+    for el in a.find_all("hashtag"):
+        l.append(el.text)
+    return l
+
+
 def preenche(info):
     t=j2.Template("""
     <!DOCTYPE html>
@@ -51,14 +64,14 @@ def preenche(info):
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 		<style>
 	  	body {
-  		background-color: LightYellow;
+  		background-color: Snow;
 		margin: 0 auto;
 		padding: 0 20px 20px 20px;
 		}
 		h1 {  
-  		color: Chocolate;
+  		color: Navy;
   		padding: 20px 0;
-  		text-shadow: 3px 3px 1px brown;
+  		text-shadow: 3px 3px 1px skyblue;
 		}
 		</style>
     </head>
@@ -69,7 +82,7 @@ def preenche(info):
         <hr/>
         <a href="#section3">Conteúdo |</a>
         <a href="#section4">Referências |</a>
-        <a href="index.html">Go back</a>
+        <a href="#section5">Hashtags</a>
         <hr/>
         <h2 id="section1">Autores</h2>
         <hr/>
@@ -91,11 +104,18 @@ def preenche(info):
         <br>
         <h2 id="section3"> Conteúdo </h2>
         <br>
-            {% for text in description %}
+            {% for text in description['texts'] %}
             <p align="justify">{{text}}</p>
             <br>
             {% endfor %}
         <center><img src= "{{image}}" ></center>
+        <br>
+        <h2 id="section5"> Hashtags </h2>
+        <p align="justify">    
+            {% for hashtag in description['hashtags'] %}
+                {{hashtag}}
+            {% endfor %}
+        </p>
         <br>
         <h2 id="section4"> Referências </h2>
         <ol>
@@ -107,7 +127,7 @@ def preenche(info):
         <hr/>
         <a href="#section1">Autores |</a>
         <a href="#section2">Link |</a>
-        <a href="index.html">Go back</a>
+        <a href="#section3">Conteúdo</a>
     </body>
     </html>
     """
@@ -121,31 +141,50 @@ def preenche2(titles):
 		<!DOCTYPE html>
 		<html>
 		<head>
-			<title>Índice</title>
+            <left><img align="left" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/logoEEUM.png" width=130 height=90></left>
+            <p align="right">Publicação Eletrónica 2020/2021</title>
+            <br><br><br>
+			<title align="center">Índice</title>
 			<meta charset="utf-8"/>
-			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		</head>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+            <style>
+            body {
+            background-color: Snow;
+            }
+            h1 {  
+            color: Navy;
+            text-shadow: 3px 3px 1px skyblue;
+            }
+            p{
+            color: Black;
+            }
+		    </style>
+        </head>
 
 		<body>
 			<br>
 			<h1 align="center"> Índice</h1>
 			<hr>
-			<br><br><br>
+			<br><br>
 			{% for t in title %}
 			<p align="center"> <a href= "report{{title.index(t)+1}}.html" title="Ir para Report{{title.index(t)+1}}" target="_blank"> {{t}}</a></p>
 			<br>
 			{% endfor %}
-			<p align="center"> <a href= "" title="Ir para Código" target="_blank"> Código</a></p>
-		</body>
+			<p align="center"> <a href= "https://github.com/beatrizcepa26/pubele2020/blob/main/TP1/report2html_tp.py" title="Ir para Código" target="_blank"> Código</a></p>
+            <p align="center"> 
+            {% for lista in hashtags %}
+            {% for elemento in lista %}
+                <a href="report{{hashtags.index(lista)+1}}.html" target="_blank">{{elemento}} |</a>
+            {% endfor %}
+            {% endfor %}
+            </p>
+        
+        
+        </body>
 		</html>""")
 
 	return(t.render(titles))
 
-
-def extractIndice(report):
-	a = bs(report,"lxml")
-	for el in a.find_all("title"):
-		return el.text
 
 
 
@@ -154,12 +193,12 @@ def main():
     f = readfile("portefolio.xml")
     lista_tags = extractDtd("portefolio.dtd")
 
-    if os.path.exists("./ReportsHTML" ) == False:
-	    dir = "./ReportsHTML"      
+    if os.path.exists("./FilesHTML" ) == False:
+	    dir = "./FilesHTML"      
 	    os.mkdir(dir) # cria uma pasta onde vão ser guardados os Reports em HTML, SE ela ainda não existir
 
     i = 1
-    t = {"title":[]}
+    t = {"title":[],'hashtags':[]}
     for report in f.split("</report>"): # faz o split para obter e guardar todos os reports numa lista como strings
         if "<report>" in report: # para ter a certeza que é um report válido, tem de ter a tag <report>
             d = extractDict(lista_tags,report)
@@ -172,16 +211,15 @@ def main():
             d['references'] = extrai_listaH(d['references'],'ref')
             
             # vai buscar o conteúdo de cada text
-            d['description'] = extrai_listaH(d['description'],'text')
+            d['description'] = {'texts':extrai_listaH(d['description'],'text'),'hashtags':extrai_listaH(d['description'],'hashtag')}
 
-            with open(rf"ReportsHTML/report{i}.html",'w') as file: 
+            with open(rf"FilesHTML/report{i}.html",'w') as file: 
                 file.write(preenche(d)) # guarda os ficheiros HTML na pasta criada acima
 
             t["title"].append(extractIndice(report))
-
-            with open(rf"ReportsHTML/index.html",'w') as f: 
+            t["hashtags"].append(extractHashtags(report))
+            with open(rf"FilesHTML/index.html",'w') as f: 
                 f.write(preenche2(t)) # guarda os ficheiros HTML na pasta criada acima'''
-
         i += 1
 
     print("Ficheiros HTML gerados e guardados com sucesso! :)")
