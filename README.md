@@ -1,5 +1,5 @@
 # pubele2020
-Repositorio das aulas de publicacao eletronica
+Repositório das aulas de publicação eletrónica
 
 - A pasta TP1 tem todo o material usado na realização do trabalho prático 1:
   - imagens, que foram usadas nos reports
