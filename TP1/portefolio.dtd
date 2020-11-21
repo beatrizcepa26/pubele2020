@@ -1,6 +1,6 @@
 <!-- DTD portefolio ... -->
 <!ELEMENT portefolio (report)* >
-<!ELEMENT report (title|date|uc|authors|resource|format|otherformat|description|references)* >
+<!ELEMENT report (title|date|uc|authors|format|description|references)* >
 <!ELEMENT title (#PCDATA) >
 <!ELEMENT date (#PCDATA) >
 <!ELEMENT uc (#PCDATA) >
