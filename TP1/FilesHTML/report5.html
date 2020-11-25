@@ -1,0 +1,103 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>RELATÓRIO DO TRABALHO EFETUADO</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+		<style>
+	  	body {background-color: Snow; margin: 0 auto; padding: 0 20px 20px 20px;}
+		h1 {color: Navy; padding: 20px 0; text-shadow: 3px 3px 1px lightblue;}
+		</style>
+    </head>
+    <body>
+        <h1 align="center">RELATÓRIO DO TRABALHO EFETUADO</h1>
+        <h2 align="center">Publicação Eletrónica</h2>
+        <p>25 de novembro de 2020</p>
+        <hr/>
+        <a href="#section3">Conteúdo |</a>
+        <a href="#section4">Referências |</a>
+        <a href="#section5">Hashtags</a>
+        <hr/>
+        <h2 id="section1">Autores</h2>
+        <hr/>
+        <ul>
+            
+            <li> Beatriz Cepa
+                <ul>
+                    <li> <u>Número</u>: 83813</li>
+                    <li> <u>Email</u>: <a href= "mailto:a83813@alunos.uminho.pt">a83813@alunos.uminho.pt</a></li> 
+                    <br>
+                </ul>
+            
+            <li> Beatriz Soares
+                <ul>
+                    <li> <u>Número</u>: 85815</li>
+                    <li> <u>Email</u>: <a href= "mailto:a85815@alunos.uminho.pt">a85815@alunos.uminho.pt</a></li> 
+                    <br>
+                </ul>
+            
+        </ul>
+        <hr/>
+        <h2 id="section2"><i>Link</i></h2>
+        <ul>
+            <li><a href=  target="_blank">Report em PDF</a></li>
+        </ul>
+        <br>
+        <h2 id="section3"> Conteúdo </h2>
+        <br>
+            
+            <p align="justify">Este trabalho prático teve como principal objetivo a generalização do conversor XML -> HTML desenvolvido
+    nas aulas práticas, de forma a poder albergar vários relatórios (organizados num portefólio XML) e o índice respetivo. </p>
+            <br>
+            
+            <p align="justify">Ora, para começar, criou-se dois ficheiros principais: um "portefolio.xml" (que contém a versão XML de todos os relatórios) 
+    e, subsequentemente, um "portefolio.dtd" (que contém as tags de todos os relatórios e a sua hierarquia). De forma a consultar estes 
+    ficheiros e deles extrair a informação necessária para gerar os relatórios em HTML, desenvolveram-se funções em Python, seguindo 
+    o raciocínio explicado de seguida. </p>
+            <br>
+            
+            <p align="justify">Assim, abriu-se o ficheiro "portefolio.xml" em modo de leitura, usando a função read_file. Depois, extraiu-se e guardou-se numa 
+    lista as tags do ficheiro "portefolio.dtd", com a função extract_Dtd. Para maior organização dos ficheiros que iriam ser criados, 
+    criou-se uma pasta, onde foram guardados os relatórios em HTML e o índice (SE ela ainda não existisse). Mais ainda, criou-se um 
+    dicionário para guardar os títulos e hashtags de cada um dos relatórios, para, posteriormente, preencher o ficheiro "index.html" </p>
+            <br>
+            
+            <p align="justify">Deste modo, fez-se um "split" do ficheiro XML, de forma a obter uma lista em que cada elemento é um relatório. Posto isto, 
+    para cada um dos relatórios, efetuou-se um conjunto de operações. Primeiramente, criou-se um dicionário {tag : miolo} recorrendo à 
+    função extract_Dict. De seguida, para as tags que, dentro delas, incluem outras ("authors", "description" e "references"), efetuou-se 
+    um processamento adicional: na tag "authors", estão incluídos vários "element", que foram extraídos para uma lista com a função 
+    extract_ListaH; para cada um desses "element", com a função extract_Dict, extraiu-se o miolo das tags "name", "number" e "email". 
+    Depois, para a tag "description", extraiu-se o conteúdo de cada tag "text" e "hashtag", e, para a tag "references", extraiu-se o 
+    conteúdo de cada tag "ref", usando, novamente, a função extract_ListaH. Finalmente, preencheu-se o template jinja generalizado para
+    os relatórios (e previamente construído no ficheiro de código) com toda a informação extraída, para isso usando a função 
+    preenche_Report, e guardou-se cada um dos relatórios na pasta criada inicialmente. </p>
+            <br>
+            
+            <p align="justify">Com vista a melhor aceder aos relatórios, criou-se também um template jinja para o índice, que foi preenchido com a informação
+    contida no dicionário referido inicialmente (usando a função preenche_Indice) e guardou-se o ficheiro resultante ("index.html") na 
+    mesma pasta. </p>
+            <br>
+            
+        <center><img src= "" ></center>
+        <br>
+        <h2 id="section5"> Hashtags </h2>
+        <p align="justify">    
+            
+            #triunfodasforçasdobem
+            
+        </p>
+        <br>
+        <h2 id="section4"> Referências </h2>
+        <ol>
+            
+            <li><a href = https://github.com/beatrizcepa26/pubele2020/blob/main/TP1/report2html_tp.py target="_blank"> https://github.com/beatrizcepa26/pubele2020/blob/main/TP1/report2html_tp.py </a></li>
+            <br>
+                    
+        </ol>
+        <hr/>
+        <a href="#section1">Autores |</a>
+        <a href="#section2">Link |</a>
+        <a href="#section3">Conteúdo</a>
+    </body>
+    </html> 
