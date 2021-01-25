@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{p['title']}}</title>
+<meta charset="UTF-8"/>
+{% endblock %}
+
+{% block body %}
+<h1 align="center">{{p['title']}}</h1>
+<h2 align="center">{{p['uc']}}</h2>
+<p> {{p['date']}} </p>
+<form action="/relatorios/{{p['title']}}" method='post'> <a> <input type="submit" value="Apagar" name="apagar"> </a>
+</form>
+<hr/>
+<a href="#section3">Conteúdo |</a>
+<a href="#section4">Referências |</a>
+<a href="#section5">Hashtags</a>
+<hr/>
+<h2 id="section1">Autores</h2>
+<hr/>
+<ul>
+    {% for element in p['authors'] %}
+    <li><a href="/pessoas/{{element['name']}}" target="_blank" title="Ir para Informação de {{element['name']}}">{{element['name']}}</a></li>
+        <ul>
+            <li> <u>Número</u>: {{element['number']}}</li>
+            <li> <u>Email</u>: <a href= "mailto:{{element['email']}}">{{element['email']}}</a></li> 
+            <br>
+        </ul>
+    {% endfor %}
+</ul>
+<hr/>
+<h2 id="section2"><i>Link</i></h2>
+<ul>
+    <li><a href= {{p['format']}} target="_blank">Report em PDF</a></li>
+</ul>
+<br>
+<h2 id="section3"> Conteúdo </h2>
+<br>
+    <p align="justify">{{p['description']}}</p>
+    <br>
+<center><img src= "{{p['image']}}" ></center>
+<br>
+<h2 id="section5"> Hashtags </h2>
+<p align="justify">    
+    {% for hashtag in p['hashtags'] %}
+    <p> 
+        <form action="/relatorios/procura" method='post'>
+        <a> <input type="submit" value="{{hashtag}}" name="procura"> </a>
+        </form>
+    </p>
+    {% endfor %}
+</p>
+<br>
+<h2 id="section4"> Referências </h2>
+<ol>
+    {% for ref in p['references'] %}
+    <li><a href = {{ref}} target="_blank"> {{ref}} </a></li>
+    <br>
+    {% endfor %}        
+</ol>
+<hr/>
+<a href="#section1">Autores |</a>
+<a href="#section2">Link |</a>
+<a href="#section3">Conteúdo</a>
+{% endblock %}

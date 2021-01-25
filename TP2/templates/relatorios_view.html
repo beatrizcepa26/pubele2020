@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block head%}
+<title>{{title}}</title>
+<right><img align="right" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP2/relatorio.jpg" width=300 height=180 style="margin-top:25px; margin-right:40px"></right>
+{% endblock %}
+
+{% block body%}
+<h1>{{title}}</h1>
+<ul>
+    {% for p in relatorios: %}
+        <li><a href="/relatorios/{{p}}">{{p}}</a></li>
+        <br>
+    {% endfor %}
+</ul>
+
+<hr>
+<h3 align="center"><b>Adicionar relatório</b></h3>
+<br>
+<form align="center" action="relatorios" method='post'>
+    <label>Título</label><br>
+    <input type="text" name="title" placeholder="Introduza um título ..."><br>
+    <br>
+    <label>Unidade Curricular</label><br>
+    <input type="text" name="uc" placeholder="Introduza uma UC ..."><br>
+    <br>
+    <label><i>Link</i> PDF</label><br>
+    <input type="text" name="format" size="50" placeholder="Introduza o link para o pdf respetivo ..."><br>
+    <br>
+    <label>Descrição</label><br>
+    <textarea  type="text" name="description" rows="4" cols="50" placeholder="Introduza uma descrição ..."></textarea> <br>
+    <br>
+    <label>Imagem</label><br>
+    <input type="text" name="image" size="50" placeholder="Introduza o link para uma imagem ..."><br>
+    <br>
+    <label><i>Hashtags</i></label><br>
+    <input type="text" name="hashtags" size="50" placeholder="Introduza hashtags separadas por espaço ..."><br>
+    <br>
+    <label>Referências</label><br>
+    <input type="text" name="references" size="50" placeholder="Introduza referências separadas por espaço ..."><br>
+    <br>
+    <label>Data</label><br>
+    <input type="text" name="date" size="50" placeholder="Introduza uma data por extenso (dia,mês,ano) ..."><br><br>
+    <br>
+    <input type="submit" value="Adicionar">
+</form>
+<br>
+<hr>
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block head%}
+    <title>{{p['nome']}}</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://github.com/beatrizcepa26/pubele2020/blob/main/TP2/bootstrap.min.css">
+    <link rel="stylesheet" href="https://github.com/beatrizcepa26/pubele2020/blob/main/TP2/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <left><img align="left" src={{p['imagem']}} width=240 height=250 style="margin-left:130px; margin-top:10px; margin-right:20px"></left>
+{% endblock %}
+
+{% block body%}
+    <div class="container">
+        <div id="header" class="row">
+            <div class="col-sm-10">
+                <div class="cv-title">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <h1>{{p['nome']}}</h1>
+                        </div>
+                    </div>
+                    <h2 style="font-size:20px">Mestrado Integrado em Engenharia Biomédica</h2>
+                    <h2 style="font-size:20px">Universidade do Minho, Braga, Portugal</h2>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ul class="list-unstyled">
+                            <li><a href="{{p['facebook']}}"><span class="fa fa-facebook"></span>Facebook</a>
+                            </li>
+                            <li><a href="{{p['twitter']}}"><span class="fa fa-twitter"></span>Twitter</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="firsthr">
+        <div class="col-md-8 mainleft">
+            <div id="statement" class="row mobmid">
+                <div class="col-sm-1">
+                    <span class="secicon fa fa-user"></span>
+                </div>
+                <div class="col-sm-11">
+                    <h3><b>Interesses</b></h3>
+                    <br>
+                    <p align="justify">{{p['interesses']}}</p>
+                </div>
+            </div>
+            <hr>
+            <div id="education" class="row mobmid">
+                <div class="col-sm-1">
+                    <span class="secicon fa fa-graduation-cap"></span>
+                </div>
+                <div class="col-sm-11">
+                    <h3><b>Educação</b></h3>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h4>4º ano - Ramo de Informática Médica</h4>
+                            <p class="sub"><a href="https://www.uminho.pt/PT">Universidade do Minho, Braga, Portugal</a>
+                            </p>
+                            <p align="justify">{{p['ramo']}}</p>
+                            <p align="justify"> UC's: Publicação Eletrónica; Plataformas de Software; Programação em Lógica, Conhecimento e Raciocínio; Aplicações Distribuídas; Comunicações e Redes; Criptografia. </p>
+                        </div>
+                        <div class="year col-md-3">
+                            <p>2020-presente</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h4>Primeiros três anos do MIEBIOM</h4>
+                            <br>
+                            <p align="justify">{{p['mestrado']}}</p>
+                        </div>
+                        <div class="year col-md-3">
+                            <p>2017-2020</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h4>Ensino Secundário - Ciências e Tecnologias</h4>
+                            <p class="sub"><a href={{p['link_escola']}}>{{p['escola']}}</a>
+                            </p>
+                            <p align="justify">{{p['secundario']}}</p>
+                        </div>
+                        <div class="year col-md-3">
+                            <p>2014-2017</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-4 mainright">
+            <div class="row">
+                <div class="col-sm-1 col-md-2 mobmid">
+                    <span class="secicon fa fa-magic"></span>
+                </div>
+                <div class="col-sm-11 col-md-10">
+                    <h3 class="mobmid"><b>Skills</b></h3>
+                    <p>C</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" style="width: 50%">
+                            <span class="sr-only">50% Complete</span>
+                        </div>
+                    </div>
+                    <p>Java</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 40%">
+                            <span class="sr-only">40% Complete (warning)</span>
+                        </div>
+                    </div>
+                    <p>Python</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 80%">
+                            <span class="sr-only">80% Complete (danger)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <hr>
+{% endblock %}

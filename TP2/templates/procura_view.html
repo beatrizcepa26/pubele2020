@@ -1,0 +1,45 @@
+{% block head%}
+  <left><img align="left" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/logoEEUM.png" width=150 height=100></left>
+  <right><img align="right" src="https://raw.githubusercontent.com/beatrizcepa26/pubele2020/main/TP1/imagem.png?fbclid=IwAR1AAickXiDy-hHg7eHiY0fxvNQTUcqKCqJ6Y5fP2Kf8_Pija0Pmt3BUEOM" width=150 height=100></right>
+  <br>
+  <p align="center" style="font-size:20px">Publicação Eletrónica 2020/2021</p>
+  <br>
+  <title align="center">Barra de pesquisa</title>
+  <meta charset="utf-8"/>
+<style>
+  .searchbar{
+      margin-top:160px;
+      width:100%;
+      text-align: center;
+  }
+  .bar{
+      border-radius:0;
+      -webkit-box-shadow: 2px 3px 0px -2px #ccc;
+      padding:20px;
+      border:0px;
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+  }
+</style>
+{% endblock %}
+
+{% block body%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container">
+      <div class="row">
+          <div class="col-md-12 col-xs-12">
+              <div class="searchbar">
+                  <div class="form-group">
+                      <form action="/relatorios/procura" method='post'>
+                        <label align="center" style="font-size:40px"><b>Pesquisa</b></label><br><br>
+                        <input type="text" class="bar" style="width:588px; height:44px; outline:none;" class="form-control" placeholder="Pesquise uma palavra..." name="procura"><br>
+                        <button type="submit" style="margin-left:560px; top:-30px;" class="glyphicon glyphicon-search">
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>
+{% endblock %}

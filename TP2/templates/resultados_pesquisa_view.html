@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<title>Resultado da pesquisa</title>
+{% endblock %}
+
+{% block body%}
+<h1>{{title}} ({{i}}) </h1>
+<br>
+<ul>
+    {% for p in relatorios: %}
+        <li><a href="/relatorios/{{p}}">{{p}}</a></li>
+        <br>
+        <p align="justify"> (...) {{texts[relatorios.index(p)] | safe}} (...)</p>
+        <br><br>
+    {% endfor %}
+</ul>
+{% endblock %}
