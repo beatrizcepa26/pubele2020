@@ -10,8 +10,8 @@ Repositório das aulas de publicação eletrónica
   - um ficheiro portefolio.dtd, com as tags do portefolio.xml
   - NOTA: Para testar o trabalho, basta correr o ficheiro de código (report2html_tp.py). É importante realçar que, para que o programa    funcione, é necessário que esse ficheiro esteja na mesma pasta que os ficheiros portefolio.xml e portefolio.dtd.
   
- 
- - A pasta TP2 tem todo o material usado na realização do trabalho prático 2:
+
+- A pasta TP2 tem todo o material usado na realização do trabalho prático 2:
   - imagens, que foram usadas nos ficheiros html
   - uma pasta templates, que contém os templates html para cada uma das rotas criadas
   - um ficheiro app.py, QUE CONTÉM O CÓDIGO, em Python, usado para criar as rotas de Frontend e Backend
